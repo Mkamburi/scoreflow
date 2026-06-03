@@ -2,6 +2,17 @@
 
 Use the same environment variable **names** as in `.env.example` files. Local `.env` files stay on your machine only.
 
+## Render (backend)
+
+1. Push this repo to GitHub.
+2. In Render: **New → Blueprint** and connect the repo (uses root `render.yaml`).
+3. In the dashboard, set **`CORS_ORIGINS`** to your frontend URL (e.g. `https://your-app.onrender.com`).
+4. Do **not** use `scripts/install_basic_pitch.sh` on Render — that script is macOS-only (`../venv`, CoreML). The blueprint installs Basic Pitch via pip on Linux instead.
+5. Use **`$PORT`** in the start command (already set in `render.yaml`), not a fixed `8000`.
+6. Deploy the **frontend** separately (Vercel/Netlify) with `VITE_API_BASE_URL` pointing at your Render service URL.
+
+**Note:** Demucs + Basic Pitch need a sizable instance; free tier may time out or run out of memory. Expect long first builds.
+
 ## Backend (FastAPI)
 
 1. Deploy `backend/` (Python 3.12+, install `requirements.txt` + `scripts/install_basic_pitch.sh` on Mac/Python 3.13).

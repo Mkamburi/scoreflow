@@ -1,0 +1,35 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# After deploy: set CORS_ORIGINS and paths in the Render dashboard (see DEPLOY.md).
+
+services:
+  - type: web
+    name: scoreflow-backend
+    runtime: python
+    rootDir: backend
+    plan: starter
+    buildCommand: >-
+      pip install -r requirements.txt &&
+      pip install "basic-pitch==0.4.0" "librosa>=0.8.0" "pretty-midi>=0.2.9" "resampy>=0.2.2,<0.4.3" mido scipy
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: UPLOAD_DIR
+        value: /var/data/scoreflow/uploads
+      - key: STEMS_DIR
+        value: /var/data/scoreflow/stems
+      - key: MIDI_DIR
+        value: /var/data/scoreflow/midi
+      - key: MAX_UPLOAD_SIZE_MB
+        value: "50"
+      - key: PIPELINE_MAX_AUDIO_SECONDS
+        value: "120"
+      - key: ENABLE_AI_COMPLETION
+        value: "true"
+      - key: CORS_ORIGINS
+        sync: false
+    disk:
+      name: scoreflow-data
+      mountPath: /var/data
+      sizeGB: 10
