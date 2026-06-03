@@ -1,0 +1,12 @@
+fastapi>=0.136.0
+uvicorn[standard]>=0.48.0
+python-multipart>=0.0.29
+pydantic-settings>=2.0.0
+pytest>=8.0.0
+pytest-asyncio>=0.24.0
+httpx>=0.28.0
+demucs
+torchcodec
+soundfile
+music21>=9.1.0
+# Basic Pitch — on Python 3.13+ Mac, run: bash scripts/install_basic_pitch.sh
