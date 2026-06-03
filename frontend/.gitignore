@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Local secrets — copy from .env.example; set VITE_* on Vercel/Netlify for production
+.env
+.env.local
+.env.*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
