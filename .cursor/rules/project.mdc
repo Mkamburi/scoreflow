@@ -1,0 +1,14 @@
+---
+description: Project-wide guidance for scoreflow
+globs: "**/*"
+alwaysApply: true
+---
+
+# scoreflow project rules
+
+- Keep changes small, focused, and aligned with the existing repository structure.
+- Read nearby files before editing so new code follows local naming, formatting, and organization.
+- Prefer clear, maintainable implementations over clever abstractions.
+- Add or update tests when behavior changes, and run the relevant checks before finishing.
+- Avoid introducing new dependencies unless they are necessary and consistent with the project stack.
+- Preserve user-authored changes and avoid unrelated refactors.
